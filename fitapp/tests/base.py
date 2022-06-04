@@ -103,9 +103,8 @@ class FitappTestBase(TestCase):
         """
         self.assertEqual(response.status_code, status_code)
         full_url = url
-        if django.VERSION < (1, 9):
-            full_url = self.TEST_SERVER + url
-        self.assertEqual(response._headers['location'][1], full_url)
+
+        self.assertEqual(response.headers['location'], full_url)
 
     def _get(self, url_name=None, url_kwargs=None, get_kwargs=None, **kwargs):
         """Convenience wrapper for test client GET request."""
