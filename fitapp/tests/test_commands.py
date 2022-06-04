@@ -1,15 +1,13 @@
 import json
+from io import StringIO
+
 import requests_mock
 import time
 
 from django.core import management
-from django.utils.six import StringIO
 from fitbit.api import FitbitOauth2Client
-from mock import patch
-from requests_oauthlib import OAuth2Session
 
 from fitapp.models import UserFitbit
-from fitapp.management.commands import refresh_tokens
 
 from .base import FitappTestBase
 

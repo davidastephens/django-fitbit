@@ -2,16 +2,12 @@ from mock import MagicMock, Mock, patch
 import django
 import random
 import time
-try:
-    from urllib.parse import urlencode
-    from string import ascii_letters
-except:
-    # Python 2.x
-    from urllib import urlencode
-    from string import letters as ascii_letters
+
+from urllib.parse import urlencode
+from string import ascii_letters
 
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase
 
 from fitbit.api import Fitbit
@@ -107,9 +103,8 @@ class FitappTestBase(TestCase):
         """
         self.assertEqual(response.status_code, status_code)
         full_url = url
-        if django.VERSION < (1, 9):
-            full_url = self.TEST_SERVER + url
-        self.assertEqual(response._headers['location'][1], full_url)
+
+        self.assertEqual(response.headers['location'], full_url)
 
     def _get(self, url_name=None, url_kwargs=None, get_kwargs=None, **kwargs):
         """Convenience wrapper for test client GET request."""

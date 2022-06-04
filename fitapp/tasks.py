@@ -58,6 +58,8 @@ def get_time_series_data(self, fitbit_user, cat, resource, date=None):
             resource, cat))
         raise Reject(e, requeue=False)
 
+    if isinstance(date, str):
+        date = parser.parse(date)
     # Create a lock so we don't try to run the same task multiple times
     sdat = date.strftime('%Y-%m-%d') if date else 'ALL'
     lock_id = '{0}-lock-{1}-{2}-{3}'.format(__name__, fitbit_user, _type, sdat)
