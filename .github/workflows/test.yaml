@@ -9,9 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    continue-on-error: true
     strategy:
       matrix:
         python: ["3.7", "3.8", "3.9", "3.10"]
+        django: ["2.2.X", "3.2.X", "4.0.X"]
 
     steps:
       - uses: actions/checkout@v3
@@ -25,5 +27,4 @@ jobs:
         run: pip install tox
 
       - name: Run tox
-        # Run tox using the version of Python in `PATH`
-        run: tox -e py
+        run: tox -e py-${{ matrix.django }}
