@@ -3,5 +3,5 @@ mock>=1,<4.1
 freezegun>=0.2.3,<0.4
 requests-mock>=1.2.0
 Sphinx>=1.2
-pytest==7.1.2
+pytest==7.2.0
 pytest-django==4.5.2
