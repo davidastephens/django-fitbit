@@ -3,4 +3,4 @@
 
 django-debug-toolbar
 django>=3.0
-tox>=1.8,<3.26
+tox>=1.8,<4.4
